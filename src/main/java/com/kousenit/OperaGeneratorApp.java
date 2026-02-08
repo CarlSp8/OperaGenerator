@@ -239,7 +239,7 @@ public class OperaGeneratorApp implements Callable<Integer> {
         int cutoff = maxLength - 3; // Reserve space for "..."
         int lastSpace = normalized.lastIndexOf(' ', cutoff);
         
-        if (lastSpace > 0 && lastSpace >= cutoff * WORD_BOUNDARY_THRESHOLD) {
+        if (lastSpace > 0 && lastSpace >= maxLength * WORD_BOUNDARY_THRESHOLD) {
             return normalized.substring(0, lastSpace).trim() + "...";
         }
 

@@ -18,7 +18,7 @@ class PreviewSnippetTest {
     }
 
     @Test
-    void testContentWithoutWhitespaceNormalization() throws Exception {
+    void testWhitespaceNormalization() throws Exception {
         String text = "This   has    multiple     spaces.";
         String result = callSnippet(text);
         assertThat(result).isEqualTo("This has multiple spaces.");
@@ -39,12 +39,11 @@ class PreviewSnippetTest {
         assertThat(result).endsWith("...");
         assertThat(result.length()).isLessThanOrEqualTo(220);
         
-        // Should not have a partial word before the ellipsis
+        // The content before ellipsis should be trimmed
         String beforeEllipsis = result.substring(0, result.length() - 3).trim();
-        assertThat(beforeEllipsis).doesNotEndWith(" ");
         
         // The last character before ellipsis should be part of a complete word
-        // (either letter or punctuation, not a space)
+        // (either letter or punctuation, not whitespace from the middle of truncation)
         char lastChar = beforeEllipsis.charAt(beforeEllipsis.length() - 1);
         assertThat(Character.isLetterOrDigit(lastChar) || ",.!?;:".indexOf(lastChar) >= 0)
             .as("Last character should be part of a word: '%s'", lastChar)
