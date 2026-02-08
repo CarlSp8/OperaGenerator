@@ -35,12 +35,12 @@ public class AiModels {
     // Google Gemini Models (upgraded to Gemini 3)
     public static final ChatModel GEMINI_3_FLASH = GoogleAiGeminiChatModel.builder()
             .apiKey(ApiKeys.GOOGLEAI_API_KEY)
-            .modelName("gemini-3-flash-preview")
+            .modelName("gemini-3-flash")
             .build();
 
     public static final ChatModel GEMINI_3_PRO = GoogleAiGeminiChatModel.builder()
             .apiKey(ApiKeys.GOOGLEAI_API_KEY)
-            .modelName("gemini-3-pro-preview")
+            .modelName("gemini-3-pro")
             .build();
 
     // Legacy aliases for backwards compatibility (will be removed in future version)

@@ -125,7 +125,7 @@ production_runs/20250218-123045_opera_title/
 ## Features
 
 - **AI Collaboration**: GPT-5.2 and Claude Opus 4.5 alternate writing scenes, creating unique stylistic variety
-- **Visual Storytelling**: Each scene gets an AI-generated illustration using Google's Gemini Nano Banana (gemini-3-pro-image-preview)
+- **Visual Storytelling**: Each scene gets an AI-generated illustration using Google's Gemini Nano Banana (gemini-3-pro-image)
 - **Voice Narration**: Dramatic audio narration of stage directions using ElevenLabs
 - **Audio Playback**: Live audio playback using JLayer for presentations and demos
 - **Automatic Formatting**: Beautiful stanza formatting applied automatically when scenes are saved

@@ -22,7 +22,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Generates images for opera scenes using Google's Gemini Nano Banana (gemini-3-pro-image-preview).
+ * Generates images for opera scenes using Google's Gemini Nano Banana (gemini-3-pro-image).
  * Uses virtual threads and rate limiting to prevent API throttling.
  */
 public class GeminiImageGenerator {
@@ -30,7 +30,7 @@ public class GeminiImageGenerator {
     private static final Logger logger = LoggerFactory.getLogger(GeminiImageGenerator.class);
     static String RESOURCE_PATH = "src/main/resources"; // Package-private for testing
 
-    private static final String MODEL_NAME = "gemini-3-pro-image-preview";
+    private static final String MODEL_NAME = "gemini-3-pro-image";
 
     // Rate limiting configuration (configurable via system properties or environment variables)
     private static final int MAX_CONCURRENT_REQUESTS = getMaxConcurrentRequests();
