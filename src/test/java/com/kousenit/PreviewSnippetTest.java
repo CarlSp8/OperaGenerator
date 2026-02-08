@@ -10,6 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 class PreviewSnippetTest {
 
+    private final OperaGeneratorApp app = new OperaGeneratorApp();
+
     @Test
     void testShortContentReturnsUnchanged() throws Exception {
         String shortText = "This is a short scene.";
@@ -139,7 +141,6 @@ class PreviewSnippetTest {
      * Helper method to call the private snippet() method using reflection.
      */
     private String callSnippet(String content) throws Exception {
-        OperaGeneratorApp app = new OperaGeneratorApp();
         Method method = OperaGeneratorApp.class.getDeclaredMethod("snippet", String.class);
         method.setAccessible(true);
         return (String) method.invoke(app, content);
@@ -149,7 +150,6 @@ class PreviewSnippetTest {
      * Helper method to call the private snippet(String, int) method using reflection.
      */
     private String callSnippetWithLength(String content, int length) throws Exception {
-        OperaGeneratorApp app = new OperaGeneratorApp();
         Method method = OperaGeneratorApp.class.getDeclaredMethod("snippet", String.class, int.class);
         method.setAccessible(true);
         return (String) method.invoke(app, content, length);

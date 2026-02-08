@@ -229,9 +229,13 @@ public class OperaGeneratorApp implements Callable<Integer> {
             return normalized;
         }
 
+        // Pre-calculate thresholds for performance
+        int sentenceThreshold = (int) (maxLength * SENTENCE_BOUNDARY_THRESHOLD);
+        int wordThreshold = (int) (maxLength * WORD_BOUNDARY_THRESHOLD);
+
         // Try to find a sentence boundary first (. ! ?)
         int sentenceEnd = findSentenceBoundary(normalized, maxLength);
-        if (sentenceEnd > 0 && sentenceEnd >= maxLength * SENTENCE_BOUNDARY_THRESHOLD) {
+        if (sentenceEnd > 0 && sentenceEnd >= sentenceThreshold) {
             return normalized.substring(0, sentenceEnd).trim();
         }
 
@@ -239,7 +243,7 @@ public class OperaGeneratorApp implements Callable<Integer> {
         int cutoff = maxLength - 3; // Reserve space for "..."
         int lastSpace = normalized.lastIndexOf(' ', cutoff);
         
-        if (lastSpace > 0 && lastSpace >= maxLength * WORD_BOUNDARY_THRESHOLD) {
+        if (lastSpace > 0 && lastSpace >= wordThreshold) {
             return normalized.substring(0, lastSpace).trim() + "...";
         }
 
