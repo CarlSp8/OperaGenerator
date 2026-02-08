@@ -196,12 +196,71 @@ public class OperaGeneratorApp implements Callable<Integer> {
         return Objects.requireNonNullElse(synopsis, "Synopsis unavailable").trim();
     }
 
+    private static final int DEFAULT_PREVIEW_LENGTH = 220;
+
+    /**
+     * Creates a preview snippet of the given content, intelligently truncating at word
+     * or sentence boundaries to avoid cutting words mid-way.
+     *
+     * @param content the content to create a preview from
+     * @return a preview snippet with a maximum length of DEFAULT_PREVIEW_LENGTH characters
+     */
     private String snippet(String content) {
-        String normalized = content.replaceAll("\\s+", " ").trim();
-        if (normalized.length() > 220) {
-            return normalized.substring(0, 217) + "...";
+        return snippet(content, DEFAULT_PREVIEW_LENGTH);
+    }
+
+    /**
+     * Creates a preview snippet of the given content with the specified maximum length.
+     * The method intelligently truncates at word or sentence boundaries.
+     *
+     * @param content   the content to create a preview from
+     * @param maxLength the maximum length of the preview
+     * @return a preview snippet, potentially with "..." appended if truncated
+     */
+    private String snippet(String content, int maxLength) {
+        if (content == null || content.isBlank()) {
+            return "";
         }
-        return normalized;
+
+        String normalized = content.replaceAll("\\s+", " ").trim();
+        if (normalized.length() <= maxLength) {
+            return normalized;
+        }
+
+        // Try to find a sentence boundary first (. ! ?)
+        int sentenceEnd = findSentenceBoundary(normalized, maxLength);
+        if (sentenceEnd > 0 && sentenceEnd >= maxLength * 0.7) { // Use sentence if it's at least 70% of max length
+            return normalized.substring(0, sentenceEnd).trim();
+        }
+
+        // Fall back to word boundary
+        int cutoff = maxLength - 3; // Reserve space for "..."
+        int lastSpace = normalized.lastIndexOf(' ', cutoff);
+        
+        if (lastSpace > 0 && lastSpace >= cutoff * 0.8) { // Use word boundary if it's at least 80% of target
+            return normalized.substring(0, lastSpace).trim() + "...";
+        }
+
+        // Last resort: cut at exact position
+        return normalized.substring(0, cutoff).trim() + "...";
+    }
+
+    /**
+     * Finds the end of a sentence within the specified limit.
+     *
+     * @param text  the text to search
+     * @param limit the maximum position to search up to
+     * @return the position after the sentence-ending punctuation, or -1 if not found
+     */
+    private int findSentenceBoundary(String text, int limit) {
+        int lastPeriod = text.lastIndexOf('.', limit);
+        int lastExclamation = text.lastIndexOf('!', limit);
+        int lastQuestion = text.lastIndexOf('?', limit);
+        
+        int maxPos = Math.max(lastPeriod, Math.max(lastExclamation, lastQuestion));
+        
+        // Return position after the punctuation mark
+        return maxPos > 0 ? maxPos + 1 : -1;
     }
 
     private Path writeSynopsis(Path operaDir, String title, String synopsis) throws IOException {
