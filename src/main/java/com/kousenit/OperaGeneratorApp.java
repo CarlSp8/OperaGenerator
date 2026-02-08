@@ -197,6 +197,8 @@ public class OperaGeneratorApp implements Callable<Integer> {
     }
 
     private static final int DEFAULT_PREVIEW_LENGTH = 220;
+    private static final double SENTENCE_BOUNDARY_THRESHOLD = 0.7; // Use sentence if at least 70% of max length
+    private static final double WORD_BOUNDARY_THRESHOLD = 0.8;     // Use word boundary if at least 80% of target
 
     /**
      * Creates a preview snippet of the given content, intelligently truncating at word
@@ -229,7 +231,7 @@ public class OperaGeneratorApp implements Callable<Integer> {
 
         // Try to find a sentence boundary first (. ! ?)
         int sentenceEnd = findSentenceBoundary(normalized, maxLength);
-        if (sentenceEnd > 0 && sentenceEnd >= maxLength * 0.7) { // Use sentence if it's at least 70% of max length
+        if (sentenceEnd > 0 && sentenceEnd >= maxLength * SENTENCE_BOUNDARY_THRESHOLD) {
             return normalized.substring(0, sentenceEnd).trim();
         }
 
@@ -237,7 +239,7 @@ public class OperaGeneratorApp implements Callable<Integer> {
         int cutoff = maxLength - 3; // Reserve space for "..."
         int lastSpace = normalized.lastIndexOf(' ', cutoff);
         
-        if (lastSpace > 0 && lastSpace >= cutoff * 0.8) { // Use word boundary if it's at least 80% of target
+        if (lastSpace > 0 && lastSpace >= cutoff * WORD_BOUNDARY_THRESHOLD) {
             return normalized.substring(0, lastSpace).trim() + "...";
         }
 
