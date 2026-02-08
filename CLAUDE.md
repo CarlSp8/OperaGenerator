@@ -6,7 +6,7 @@ This document provides context for Claude when working on the Opera Generator pr
 
 This is an AI-powered opera generation system built with Java 21 and LangChain4j 1.10.0. The system creates complete multimedia operas by:
 1. Using GPT-5.2 and Claude Opus 4.5 to alternately write scenes
-2. Generating illustrations with Google's Gemini Nano Banana (gemini-3-pro-image-preview)
+2. Generating illustrations with Google's Gemini Nano Banana (gemini-3-pro-image)
 3. Creating dramatic voice narration with ElevenLabs text-to-speech
 4. Playing audio with JLayer for live demonstrations
 5. Creating formatted libretti with embedded images and automatic stanza formatting
@@ -21,7 +21,7 @@ This is an AI-powered opera generation system built with Java 21 and LangChain4j
 - **Text blocks** for multi-line strings
 
 ### Important Model Information
-- **Gemini Nano Banana (gemini-3-pro-image-preview)**: Returns binary image data in response parts, requires GOOGLE_API_KEY and Pro account
+- **Gemini Nano Banana (gemini-3-pro-image)**: Returns binary image data in response parts, requires GOOGLE_API_KEY and Pro account
 - **Image generation**: Uses Google GenAI SDK (com.google.genai:google-genai:1.36.0) with Client pattern
 - **Rate limiting**: Max 2 concurrent image requests with 1-second delays to avoid API throttling (configurable)
 - **Chat Models**: GPT-5.2 (OpenAI), Claude Opus 4.5 (Anthropic), Gemini 3 Pro/Flash (Google)

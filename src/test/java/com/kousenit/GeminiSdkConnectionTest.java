@@ -30,9 +30,9 @@ class GeminiSdkConnectionTest {
                     .responseModalities("TEXT")
                     .build();
 
-            System.out.println("Calling gemini-3-flash-preview with TEXT modality...");
+            System.out.println("Calling gemini-3-flash with TEXT modality...");
             GenerateContentResponse response = client.models.generateContent(
-                    "gemini-3-flash-preview",
+                    "gemini-3-flash",
                     "Say hello in exactly 5 words",
                     config);
 
@@ -61,9 +61,9 @@ class GeminiSdkConnectionTest {
                     .responseModalities("IMAGE")
                     .build();
 
-            System.out.println("Calling gemini-3-pro-image-preview with IMAGE modality...");
+            System.out.println("Calling gemini-3-pro-image with IMAGE modality...");
             GenerateContentResponse response = client.models.generateContent(
-                    "gemini-3-pro-image-preview",
+                    "gemini-3-pro-image",
                     "A simple red circle",
                     config);
 

@@ -4,18 +4,18 @@
 **Status:** ✅ COMPLETE - All models upgraded and tested
 
 ## Objective
-Upgrade all AI models to their latest versions and switch from OpenAI gpt-image-1 to Google Gemini Nano Banana (gemini-3-pro-image-preview) for image generation.
+Upgrade all AI models to their latest versions and switch from OpenAI gpt-image-1 to Google Gemini Nano Banana (gemini-3-pro-image) for image generation.
 
 ## Verified Model Names
 
 ### Chat Models (All Confirmed ✓)
 - **Claude Opus 4.5**: `claude-opus-4-5-20251101` (production snapshot from Nov 1, 2025)
 - **GPT-5.2**: `gpt-5.2` (standard - Note: gpt-5.2-pro does NOT exist)
-- **Gemini 3 Flash**: `gemini-3-flash-preview` (fast)
-- **Gemini 3 Pro**: `gemini-3-pro-preview` (advanced reasoning)
+- **Gemini 3 Flash**: `gemini-3-flash` (fast)
+- **Gemini 3 Pro**: `gemini-3-pro` (advanced reasoning)
 
 ### Image Generation
-- **Target**: `gemini-3-pro-image-preview` (Nano Banana Pro)
+- **Target**: `gemini-3-pro-image` (Nano Banana Pro)
 - **Library**: `com.google.genai:google-genai:1.36.0` (Google's native Java SDK)
 - **Reason for switch**: User reports much better results with Nano Banana than gpt-image-1
 
@@ -43,7 +43,7 @@ try (Client client = new Client()) {
       .build();
 
   GenerateContentResponse response = client.models.generateContent(
-      "gemini-3-pro-image-preview",
+      "gemini-3-pro-image",
       "Your prompt here",
       config);
 
@@ -69,7 +69,7 @@ try (Client client = new Client()) {
 **Key Differences from OpenAI:**
 - Google SDK uses try-with-resources Client pattern
 - Images returned as binary data in response parts (not base64 or URLs)
-- Model name: `gemini-3-pro-image-preview` instead of `gpt-image-1`
+- Model name: `gemini-3-pro-image` instead of `gpt-image-1`
 - Authentication via GOOGLE_API_KEY env var (Client auto-detects)
 
 ## Files to Modify
@@ -84,7 +84,7 @@ implementation("com.google.genai:google-genai:1.36.0")
 Update model names:
 - GPT_5 → `gpt-5.2`
 - CLAUDE_OPUS_4_1 → `claude-opus-4-5-20251101`
-- GEMINI_FLASH_25 → `gemini-3-flash-preview` or `gemini-3-pro-preview`
+- GEMINI_FLASH_25 → `gemini-3-flash` or `gemini-3-pro`
 
 ### GeminiImageGenerator.java (NEW FILE)
 Create new class using Google GenAI SDK, replacing OperaImageGenerator functionality.
