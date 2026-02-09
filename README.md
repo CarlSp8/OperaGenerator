@@ -135,6 +135,11 @@ After generation, simply **double-click the `*_viewer.html` file** in your file 
 - **No internet required** - Works completely offline
 - **Privacy-focused** - No data sent to external servers
 
+![HTML Viewer Screenshot](https://github.com/user-attachments/assets/88f1fed5-9560-4da8-8424-811df500d9a7)
+
+*Example: The HTML viewer displaying an opera with beautiful gradient styling, proper formatting, and character voice annotations*
+
+
 ## Features
 
 - **AI Collaboration**: GPT-5.2 and Claude Opus 4.5 alternate writing scenes, creating unique stylistic variety
