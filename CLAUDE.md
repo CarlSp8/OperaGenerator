@@ -24,7 +24,8 @@ This is an AI-powered opera generation system built with Java 21 and LangChain4j
 - **Gemini Nano Banana (gemini-3-pro-image-preview)**: Returns binary image data in response parts, requires GOOGLE_API_KEY and Pro account
 - **Image generation**: Uses Google GenAI SDK (com.google.genai:google-genai:1.36.0) with Client pattern
 - **Rate limiting**: Max 2 concurrent image requests with 1-second delays to avoid API throttling (configurable)
-- **Chat Models**: GPT-5.2 (OpenAI), Claude Opus 4.5 (Anthropic), Gemini 3 Pro/Flash (Google)
+- **Chat Models**: GPT-5.2 (OpenAI), Claude Opus 4.5 (Anthropic), Gemini 3 Pro/Flash (Google), Gemini Flash 1.5 (Google)
+- **Gemini Flash 1.5**: High-volume, high-frequency tasks optimized model for cost-effective text generation
 - **ElevenLabs**: Uses HttpClient for API calls, streams audio directly to files
 - **Voice IDs**: Bella (narrator) and Antoni (critic) for different character voices
 

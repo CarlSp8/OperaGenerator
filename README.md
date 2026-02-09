@@ -24,7 +24,7 @@ Plus integration with external tools:
 - API keys for:
   - OpenAI (for GPT-5.2 text generation)
   - Anthropic (for Claude Opus 4.5 text generation)
-  - Google AI (for Gemini 3 Pro critique and Nano Banana image generation - requires Pro account)
+  - Google AI (for Gemini 3 Pro critique, Gemini Flash 1.5 text generation, and Nano Banana image generation - requires Pro account)
   - ElevenLabs (optional, for voice narration)
 
 ## Setup
@@ -125,6 +125,7 @@ production_runs/20250218-123045_opera_title/
 ## Features
 
 - **AI Collaboration**: GPT-5.2 and Claude Opus 4.5 alternate writing scenes, creating unique stylistic variety
+- **Multiple Model Support**: Includes support for Gemini Flash 1.5 for high-volume, cost-effective text generation
 - **Visual Storytelling**: Each scene gets an AI-generated illustration using Google's Gemini Nano Banana (gemini-3-pro-image-preview)
 - **Voice Narration**: Dramatic audio narration of stage directions using ElevenLabs
 - **Audio Playback**: Live audio playback using JLayer for presentations and demos
@@ -174,7 +175,7 @@ Key components:
 - `OperaCritic` - Generates critical reviews using Google Gemini 3 Pro
 - `ContinueHartfordOperaTest` - Example of continuing unfinished operas
 - `Opera` - Domain model using Java records with nested Scene records
-- `AiModels` - Configuration for all AI models (GPT-5.2, Claude Opus 4.5, Gemini 3)
+- `AiModels` - Configuration for all AI models (GPT-5.2, Claude Opus 4.5, Gemini 3, Gemini Flash 1.5)
 
 ## Troubleshooting
 
