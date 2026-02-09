@@ -24,6 +24,11 @@ class GeminiFlash15Test {
         assertThat(response.aiMessage()).isNotNull();
         assertThat(response.aiMessage().text()).isNotEmpty();
         
+        // Verify response contains opera-related content
+        String responseText = response.aiMessage().text().toLowerCase();
+        assertThat(responseText).containsAnyOf("music", "drama", "performance", 
+                "theatrical", "stage", "singing", "art", "vocal");
+        
         System.out.println("✅ Gemini Flash 1.5 Response: " + response.aiMessage().text());
         System.out.println("Token Usage: " + response.tokenUsage());
     }
@@ -44,6 +49,10 @@ class GeminiFlash15Test {
         assertThat(response).isNotNull();
         assertThat(response.aiMessage().text()).isNotEmpty();
         assertThat(response.aiMessage().text().length()).isGreaterThan(50);
+        
+        // Verify response contains expected opera scene elements
+        String responseText = response.aiMessage().text();
+        assertThat(responseText).matches("(?s).*\\[.*\\].*"); // Stage directions in brackets
         
         System.out.println("✅ Gemini Flash 1.5 Opera Scene:");
         System.out.println(response.aiMessage().text());
