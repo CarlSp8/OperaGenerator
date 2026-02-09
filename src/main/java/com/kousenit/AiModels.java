@@ -43,6 +43,14 @@ public class AiModels {
             .modelName("gemini-3-pro-preview")
             .build();
 
+    // Gemini 1.5 Flash - High-volume, high-frequency tasks optimized model
+    public static final ChatModel GEMINI_FLASH_1_5 = GoogleAiGeminiChatModel.builder()
+            .apiKey(ApiKeys.GOOGLEAI_API_KEY)
+            .modelName("gemini-1.5-flash")
+            .timeout(Duration.ofMinutes(2))
+            .maxRetries(4)
+            .build();
+
     // Legacy aliases for backwards compatibility (will be removed in future version)
     @Deprecated(since = "1.0", forRemoval = true)
     public static final ChatModel GPT_5 = GPT_5_2;
