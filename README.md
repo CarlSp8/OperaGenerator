@@ -102,12 +102,14 @@ The system creates:
    - Opera introduction narration
    - Stage directions narration for each scene
    - Critic's audio review (if critique is generated)
-5. **An organized directory** containing all assets (default root: `production_runs/<timestamp>_<title>/`)
+5. **HTML browser viewer** - Standalone web page for viewing in your browser
+6. **An organized directory** containing all assets (default root: `production_runs/<timestamp>_<title>/`)
 
 Example output structure (default location: `production_runs`):
 ```
 production_runs/20250218-123045_opera_title/
 ├── opera_title_complete_libretto.md   # Full opera with embedded images
+├── opera_title_viewer.html            # 🌐 HTML browser viewer (NEW!)
 ├── opera_introduction.mp3              # Dramatic introduction narration
 ├── scene_1_title.txt                   # Individual scene files
 ├── scene_1_illustration.png            # AI-generated illustrations
@@ -122,12 +124,24 @@ production_runs/20250218-123045_opera_title/
 └── ...
 ```
 
+### 🌐 Viewing in Your Browser
+
+After generation, simply **double-click the `*_viewer.html` file** in your file explorer to open it in your browser. The HTML viewer provides:
+- **Beautiful, styled presentation** of the complete opera
+- **Embedded images** displayed alongside each scene
+- **Audio playback controls** for narration and critique
+- **Responsive design** that works on desktop and mobile
+- **100% local storage** - All files stay on your PC
+- **No internet required** - Works completely offline
+- **Privacy-focused** - No data sent to external servers
+
 ## Features
 
 - **AI Collaboration**: GPT-5.2 and Claude Opus 4.5 alternate writing scenes, creating unique stylistic variety
 - **Visual Storytelling**: Each scene gets an AI-generated illustration using Google's Gemini Nano Banana (gemini-3-pro-image-preview)
 - **Voice Narration**: Dramatic audio narration of stage directions using ElevenLabs
 - **Audio Playback**: Live audio playback using JLayer for presentations and demos
+- **Browser Viewing**: Standalone HTML viewers for rich, local browser-based viewing
 - **Automatic Formatting**: Beautiful stanza formatting applied automatically when scenes are saved
 - **Professional Layout**: Proper opera formatting with stage directions, character names, and sung lyrics
 - **Critical Review**: Optional AI-generated critique by Google Gemini 3 Pro acting as an opera critic

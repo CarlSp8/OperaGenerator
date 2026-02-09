@@ -384,9 +384,6 @@ public class HtmlOperaViewer {
         // Handle horizontal rules
         html = html.replaceAll("(?m)^---$", "<hr>");
         
-        // Handle line breaks
-        html = html.replaceAll("<br>", "<br>");
-        
         // Handle paragraphs (double newlines)
         html = html.replaceAll("(?m)^([^<\n].+)$", "<p>$1</p>");
         
