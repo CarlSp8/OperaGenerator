@@ -65,12 +65,19 @@ public class IntegratedOperaGenerator {
             GeminiImageGenerator.generateImages(opera);
             System.out.println("✅ Illustrations generated\n");
 
+            // Step 5: Generate HTML viewer for browser
+            System.out.println("🌐 Step 5: Generating HTML viewer for browser...");
+            var operaDir = librettoPath.getParent();
+            Path htmlViewerPath = HtmlOperaViewer.generateHtmlViewer(opera, operaDir);
+            System.out.println("✅ HTML viewer created\n");
+
             // Final summary
             System.out.println("🎉 Opera Generation Complete!");
             System.out.println("=".repeat(50));
             System.out.printf("📖 Opera Title: %s%n", opera.title());
             System.out.printf("🎬 Total Scenes: %d%n", opera.scenes().size());
             System.out.printf("📁 Libretto File: %s%n", librettoPath.getFileName());
+            System.out.printf("🌐 HTML Viewer: %s%n", htmlViewerPath.getFileName());
             System.out.println("🖼️  Individual scene files and illustrations created in src/main/resources/");
 
             // List the generated files
@@ -89,11 +96,11 @@ public class IntegratedOperaGenerator {
                 );
             }
 
-            // Step 6: Prepare export packages for external tools
-            System.out.println("📦 Step 6: Preparing exports for external tools...");
-            try {
-                Path operaDir = librettoPath.getParent();
+            System.out.println("\n🌐 To view in browser, open: " + htmlViewerPath.toAbsolutePath());
 
+            // Step 6: Prepare export packages for external tools
+            System.out.println("\n📦 Step 6: Preparing exports for external tools...");
+            try {
                 // Generate Suno AI music prompts
                 ExternalToolsPreparer.generateSunoPrompts(opera, operaDir);
 
@@ -110,7 +117,6 @@ public class IntegratedOperaGenerator {
                 System.out.println("📰 Step 7: Generating critical review...");
                 try {
                     OperaCritic critic = new OperaCritic();
-                    Path operaDir = librettoPath.getParent();
                     critic.reviewAndSave(operaDir, opera.title());
                     System.out.println("✅ Critical review generated");
 

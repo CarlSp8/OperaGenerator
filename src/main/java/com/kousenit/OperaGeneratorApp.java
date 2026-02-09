@@ -142,11 +142,15 @@ public class OperaGeneratorApp implements Callable<Integer> {
                 critiquePath = operaDir.resolve(slugify(opera.title()) + "_critique.md");
             }
 
+            // Generate HTML viewer for browser viewing
+            System.out.println("🌐 Generating HTML viewer for browser...");
+            Path htmlViewerPath = HtmlOperaViewer.generateHtmlViewer(opera, operaDir);
+            
             Instant finished = Instant.now();
             Path metadataPath = writeMetadata(opera, premise, librettoPath, synopsisPath, critiquePath,
                     synopsis, start, finished);
 
-            printSummary(opera, librettoPath, synopsisPath, critiquePath, imagePaths, metadataPath, start, finished);
+            printSummary(opera, librettoPath, synopsisPath, critiquePath, imagePaths, metadataPath, htmlViewerPath, start, finished);
 
             return metadataPath;
         } finally {
@@ -276,6 +280,7 @@ public class OperaGeneratorApp implements Callable<Integer> {
                               Path critiquePath,
                               List<Path> imagePaths,
                               Path metadataPath,
+                              Path htmlViewerPath,
                               Instant started,
                               Instant finished) {
         Duration elapsed = Duration.between(started, finished);
@@ -301,7 +306,9 @@ public class OperaGeneratorApp implements Callable<Integer> {
         }
 
         System.out.println("Metadata: " + metadataPath.getFileName());
+        System.out.println("HTML Viewer: " + htmlViewerPath.getFileName());
         System.out.println("Elapsed: " + formatDuration(elapsed));
+        System.out.println("\n🌐 To view in browser, open: " + htmlViewerPath.toAbsolutePath());
         System.out.println("===============================\n");
     }
 
